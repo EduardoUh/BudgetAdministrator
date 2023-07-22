@@ -4,23 +4,18 @@ import Message from './Message';
 
 const NewBudget = ({ budget, setBudget, setValidBudget }) => {
     const [message, setMessage] = useState('');
-    const [blockBudget, setBlockBudget] = useState(true);
 
     const handleBeforeInput = e => {
         const incomingValue = e.data;
         const isNumber = /^[0-9]$/.test(incomingValue);
         if (!isNumber && incomingValue !== '.') {
-            setBlockBudget(true);
             e.preventDefault();
             return;
         }
-        setBlockBudget(false);
     }
 
     const handleChange = e => {
-        if (!blockBudget) {
-            setBudget(Number(e.target.value));
-        }
+        setBudget(Number(e.target.value));
     }
 
     const handleSubmit = e => {
